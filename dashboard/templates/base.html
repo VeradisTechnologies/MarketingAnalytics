@@ -1,0 +1,60 @@
+{% load static %}
+
+<html>
+    <head>
+        <meta name="description" content="" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+       
+        <!-- Jquery  -->
+        <script src="{% static 'js/jquery-3.4.1.js' %}" ></script>
+
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+        <!-- Date Range picker -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+        <!-- Echart -->
+        <script type="text/javascript" src="{% static 'js/echarts.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/echarts-gl.min.js' %}"></script>
+
+        <!--Ga dashboard bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}?version=0.0.2" />
+
+        <style>
+            .custom-select {
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            padding: 1px 1px 1px 5px;
+            line-height: 1.5;
+            color: #495057;
+            font-size: 14px;
+            vertical-align: middle;
+            background: #fff url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' v…0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E) no-repeat right 0.75rem center;
+            background-size: 8px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            }
+            </style>
+       
+    </head>
+
+    <body>
+        {% block user_login %} {%endblock%}
+        {% block dashboard %} {% endblock %}
+        {% block social_dashboard %} {% endblock %}
+        {% block mailchimp_dashboard %} {% endblock %}
+        {% block twitter_dashboard %}{% endblock %}
+        {% block settings %} {% endblock %}
+    </body>
+
+</html>

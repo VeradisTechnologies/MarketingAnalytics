@@ -1,0 +1,655 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300&display=swap');
+
+body {
+	font-family: 'Poppins', sans-serif !important;
+    background-color: #fafafa;
+    font-size: 100%;
+}
+
+a:link {
+    outline: none;
+}
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+.container {
+	width:99% !important;
+	max-width:1500px !important;
+	padding:0 !important;
+	border:0px solid #f00;
+}
+
+header {
+	height:50px;
+	padding:5px 0;
+	background-color:#fff;
+	/*border-bottom:1px solid #e9e9e9;*/
+}
+.dm_header_logo {
+	float: left;
+	width:120px;
+	border:0px solid #f00;
+}
+.dm_header_logo img {
+	width:72px;
+}
+.dm_header_headtxt {
+	float: left;
+	border:0px solid #f00;
+	display: inline-block;
+	margin:0 auto;
+	width:78%;
+	text-align: center;
+}
+.dm_header_headtxt h1 {
+	font-size:22px;
+	padding:5px 0 0 0;
+	margin:0;
+	color:#555;
+}
+.dm_header_icons {
+	float: right;
+}
+.dm_header_icons div {
+	float:left;
+	border:0px solid #999;
+	width:30px; height:30px;
+	line-height:30px !important;
+	border-radius:4px;
+	margin:4px 0 0 3px;
+	text-align: center;
+	opacity:0.8;
+	
+}
+.dm_header_icons div:hover {
+	opacity:1;
+	cursor: pointer;
+}
+.dm_header_icons div:nth-child(1) img{
+	width:68%;	
+	margin:4px 0 0 0;
+}
+.dm_header_icons div:nth-child(2) img{
+	width:60%;	
+	margin:5px 0 0 0;
+}
+.dm_header_icons div:nth-child(3) img{
+	width:66%;	
+	margin:5px 0 0 0;
+}
+.dm_header_icons div:nth-child(4) img{
+	width:60%;	
+	margin:5px 0 0 0;
+}
+
+.dm_breadcrumb {
+	border:0px solid #f00;
+	padding:4px 0 0 0;
+}
+
+.dm_breadcrumb h3 {
+	padding:0; margin:0;
+	font-size:15px;
+	font-weight: normal;
+	color:#666666;
+}
+
+.dm_summary {
+	border:0px solid #f00;
+	margin:5px 0.6% 6px;	
+}
+.dm_summary .dm_summary_box {
+	border:0px solid #f00;
+	width:20%;
+	float:left;
+	text-align: center;
+}
+.dm_summary .dm_summary_box p {
+	padding:0; margin:0;
+	font-size:16px;
+	color:#888;
+	font-weight: 300;
+}
+.dm_summary .dm_summary_box h2 {
+	padding:2px 0; margin:0;
+	font-size:28px;
+	color:#222;
+	font-weight: normal;
+}
+.dm_summay_mailchimp .dm_summary_box {
+	border:0px solid #f00;
+	width:16.66%;
+	float:left;
+	text-align: center;
+}
+
+
+.dm_chart_contain {
+	background-color:#fff;
+	padding:4px 0 0 0;
+}
+.dm_chartbox {
+	background-color:#fff;
+	padding:0px 10px;
+	border:0px solid #f00;
+	float:left;
+	min-height:300px;
+}
+.dm_chartbox  h4 {
+	font-size:15px;
+	font-weight:400;
+	color:#444;
+	padding:0 0 10px 0; margin:0;
+}
+.dm_chartbox .dm_chart_area {
+	border:0px solid #f00;
+	text-align: center;
+	height:270px;
+}
+.dm_chartbox .dm_chart_area .dm_gender_sec {
+	margin:0 0 5px 0;
+	padding:0 0 5px 0;
+	height:30%;
+}
+.dm_chartbox .dm_chart_area .dm_gender_sec .dm_gender_chart {
+	width:100px;
+	height:100px;
+	border:0px solid #f0f !important;	
+}
+.dm_chartbox .dm_chart_area .dm_gender_sec .dm_gender_contain {
+	width:auto;
+	margin:0 auto;
+	border:0px solid #f00;
+	display: inline-block;
+}
+.dm_chartbox .dm_chart_area .dm_gender_sec .dm_gender_contain div {
+	float: left;
+	padding:0 10px;
+	text-align:center;
+	border:0px solid #f00;
+}
+
+
+.dm_chartbox .dm_chart_area .dm_gender_sec .dm_gender_contain div h1 {
+	font-size:48px;
+	font-weight:400;
+	line-height:40px;
+	padding:15px 0 0 0; margin:0;
+	color:#222;
+}
+.dm_chartbox .dm_chart_area .dm_gender_sec .dm_gender_contain div p {
+	font-size:16px;
+	line-height:16px;
+	padding:0; margin:0;
+	color:#888;
+}
+.dm_chartbox .dm_chart_area .dm_gender_sec .dm_gender_contain div h1 span {
+	font-size:24px;
+}
+.dm_chartbox .dm_chart_area .dm_gender_sec .dm_gender_contain p {
+	padding:0; margin:0;
+}
+
+.dm_nodata {
+	border:0px solid #f00;
+}
+.dm_nodata h3 { 
+	padding:0; 
+  font-size:16px;
+  color:#666;
+  position: relative;
+  top:20px;
+}
+.dm_nodata h4 { 
+	padding:0; 
+  font-size:16px;
+  color:#666;
+  position: relative;
+  top:80px;
+}
+.dm_nodata h5 { 
+	padding:0; 
+  font-size:16px;
+  color:#666;
+  position: relative;
+  top:30px;
+}
+/* .dm_nodata h4 {  
+	margin:26% 0 0 0;
+}
+.dm_nodata h5 { 
+	margin:16% 0 0 0;
+} */
+
+
+.dm_twoclmn {
+	margin:0;
+	width:50%;
+}
+
+.dm_threeclmn {
+	margin:0;
+	width:33.333%;
+}
+
+.dm_fourclmn {
+	margin:0;
+	width:25%;
+}
+
+
+.dm39prcnt_box {
+	margin:0;
+	width:38%;
+}
+.dm22prcnt_box {
+	margin:0;
+	width:23%;
+}
+.dm40prcnt_box {
+	margin:0;
+	width:40%;
+}
+.dm30prcnt_box {
+	margin:0;
+	width:30%;
+}
+
+
+
+/* customized for gender chart */
+.dm_chart_area .dm_male {
+	width: auto; 
+	float: left;
+	text-align: center;
+}
+.dm_chart_area .dm_male h6  {
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+    margin: 0;
+	color: #888;
+
+}
+
+.dm_chart_area .dm_male h1 {
+	font-size: 48px;
+	font-weight: 400;
+    color: #222;
+    line-height: 40px;
+    padding: 15px 0 0 0;
+    margin: 0;
+}
+.dm_chart_area .dm_male h1 span{
+	font-size: 24px;
+}
+.dm_chart_area .dm_male img {
+	padding: 5px 0 0 40px;
+}
+
+.dm_chart_area .dm_famale {
+	width: 33%; 
+	float: right;
+	text-align: center;
+}
+.dm_chart_area .dm_famale h6  {
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+    margin: 0;
+	color: #888;
+
+}
+
+.dm_chart_area .dm_famale h1 {
+	font-size: 48px;
+	font-weight: 400;
+    color: #222;
+    line-height: 40px;
+    padding: 15px 0 0 0;
+    margin: 0;
+}
+.dm_chart_area .dm_famale h1 span{
+	font-size: 24px;
+}
+.dm_chart_area .dm_famale img {
+	padding: 5px 40px 0 0;
+}
+/* customized for gender chart end*/
+
+
+.DM_form-group, .DM_form-group_all {
+  display: block;
+  margin: 0 auto;
+  width:86%;
+  border:0px solid #f00;
+}
+
+.DM_form-group input, .DM_form-group_all input{
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.DM_form-group label, .DM_form-group_all label {
+  position: relative;
+  cursor: pointer;
+  font-size:13px;
+  font-weight:400;
+}
+
+
+.DM_form-group label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #008e83;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.DM_form-group input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 7px;
+  width: 6px;
+  height: 14px;
+  border: solid #008e83;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+
+.DM_form-group_all label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid #333;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.DM_form-group_all input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 7px;
+  width: 6px;
+  height: 14px;
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* tooltip box */
+.DM_tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.DM_tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color:rgba(0,0,0,0.8);
+  font-weight: 400;
+  font-size:12px;
+  line-height:14px;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 10px 8px;
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  left: 40%;
+  margin-left: -50px;
+}
+
+.DM_tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 55%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
+
+.DM_tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.DM_tooltiplogout .tooltiptext::after {
+  bottom: 100%;
+  left: 75%;
+  margin-left: -5px;
+}
+
+
+/* drop down boxes */
+
+.modal, .modal2, .modal3 {
+  display: none;
+  position: fixed;
+  z-index: 1; 
+  margin-top:50px;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0);
+}
+
+.modal_content {
+  position: absolute !important;  
+  right:20px !important;	
+  padding:0;
+  background-color:#fff;
+  border: 1px solid #eee;
+  width: 220px !important;
+  z-index:999999999;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 3px 6px 0 rgba(0,0,0,0.19);
+ -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+
+/* Add Animation */
+@-webkit-keyframes slideInDown {
+  0% {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  }
+  @keyframes slideInDown {
+  0% {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  } 
+
+/* The Close Button */
+.close {
+  float: right;
+  right:5px !important;
+  font-size: 28px;
+  font-weight: 300 !important;
+  text-align: right;
+  position: relative !important;
+  z-index:999999;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-body {padding: 0 !important;}
+.dm_arrow_up {
+  width: 20px; 
+  height: 20px; 
+  background-color:#f0f;
+  /*border-left: 15px solid transparent;
+  border-right: 15px solid transparent;  
+  border-bottom: 15px solid #f0f;*/
+  position: absolute !important;
+  display: inline;
+  z-index:9999999999898999 !important;
+  margin:-15px 0 0 81% !important;
+}
+
+
+
+.dm_analytics_drop ul {
+	padding:0; margin:0;
+}
+.dm_analytics_drop ul li {
+	padding:0; margin:0;
+	list-style-type: none;
+}
+.dm_analytics_drop ul li {
+	border-bottom:1px solid #eee;
+}
+.dm_analytics_drop ul li:last-child {
+	border-bottom: none;
+}
+.dm_analytics_drop ul li a {
+	line-height:40px;
+	padding:0 10px;
+	border:0px solid #f00;
+	font-size:14px;
+	font-weight: 300;
+	color:#555;
+}
+.dm_analytics_drop ul li:hover {
+	background-color:#f9f9f9;
+	cursor: pointer;
+}
+.dm_analytics_drop ul li:hover a {
+	color:#007bff;	
+}
+.dm_analytics_drop ul li a:hover {
+	text-decoration: none;
+}
+.dm_analytics_drop ul li img {
+	width:24px;
+	max-height:26px;
+	margin:0 10px 0 0;
+}
+.dm_calendar_drop {
+	padding:0 10px 10px 10px !important;
+	border:0px solid #f00;
+}
+.dm_calendar_drop p {
+	padding:5px 0 5px 10px; margin:0 -10px 10px -10px;
+	font-size:15px;
+	background-color:#f2f2f2;
+	border-bottom:1px solid #eee;
+}
+.dm_calendar_drop select {
+	/*width:89%;
+	margin:0 0 10px 10px;
+	padding:2px 0;
+	font-size:14px;
+	font-weight: 400;
+	border:1px solid #ccc;
+	color:#444;*/
+}
+.dm_calendar_drop div {
+	padding:10px 0 10px 0;
+}
+.dm_calendar_drop div a {
+	font-size:14px;
+	padding:3px 15px 6px 15px;
+	background-color:#3289e8;
+	border-radius:3px;
+	color:#fff;
+	margin:0 6.5% 0 0;
+}
+.dm_calendar_drop div a:hover {
+	text-decoration: none;
+	background-color:#4398f5;
+}
+.dm_kpi_drop {
+	padding:0 10px 10px 10px !important;
+}
+.dm_kpi_drop h3 {
+	
+	font-weight: 400;
+	padding:8px 0 8px 10px; margin:0 -10px 10px -10px;
+	font-size:15px;
+	background-color:#f2f2f2;
+	border-bottom:1px solid #eee;
+	
+}
+.dm_kpi_drop h4 {
+	padding:15px 0 0 10px;
+	font-size:15px;
+	font-weight:400 !important;
+}
+.dm_kpi_drop h4 img {
+	width:18px;
+	margin:0 5px 0 3px;
+}
+
+
+.dm_calendar_drop select {
+  width:89%;
+  margin:0 0 10px 10px;
+  padding: 5px 35px 5px 5px;
+  font-size: 14px;
+  font-weight:400;
+  color:#444;
+  border: 1px solid #c9c9c9;
+  height: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(../images/icons/down.png) 96% / 12px no-repeat #fff;
+}
+/* CAUTION: Internet Explorer hackery ahead */
+
+.dm_calendar_drop select::-ms-expand {
+    display: none; /* Remove default arrow in Internet Explorer 10 and 11 */
+}
+/* Target Internet Explorer 9 to undo the custom arrow */
+@media screen and (min-width:0\0) {
+    .dm_calendar_drop select {
+        background: none\9;
+        padding: 5px\9;
+    }
+}
+
+

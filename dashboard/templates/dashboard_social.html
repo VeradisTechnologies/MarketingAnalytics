@@ -1,0 +1,525 @@
+{% load static %}
+<html>
+
+<head>
+	<title>Marketing Analytics - Social Media</title>
+	<meta name="description" content="" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}?version=0.0.2" />
+	<!-- individual effect -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}?version=0.0.1" />
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/daterangepicker.css' %}" />
+
+
+	<!-- Jquery  -->
+	<script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- Echart -->
+	<script type="text/javascript" src="{% static 'js/echarts.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/echarts-gl.min.js' %}"></script>
+
+	<!-- js file loader-->
+	<img src="{% static 'images/loader.gif'%}" style="display:none" id="loader_gif">
+	<script src="{% static 'js/charts_js/js_loader.js' %}?version=0.0.1"></script>
+
+
+	<!-- js charts -->
+
+	<script src="{% static 'js/social_chart_js/js_ajax_call.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_engagements_chart.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_video_views_chart.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_clicks_chart.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_fb_post_views_chart.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_impressions_chart.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_likes_chart.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_fans_chart.js' %}?version=0.0.3"></script>
+	<script src="{% static 'js/social_chart_js/js_social_age_group_chart.js' %}?version=0.0.2"></script>
+	<script src="{% static 'js/social_chart_js/js_social_gender_chart.js' %}?version=0.0.2"></script>
+
+	<script src="{% static 'js/datepicker/vendor.js' %}"></script>
+	<script src="{% static 'js/datepicker/daterangepicker.js' %}"></script>
+	<script src="{% static 'js/datepicker/main.js' %}"></script>
+
+</head>
+
+<body>
+
+	<header>
+		<div class="container">
+			<div class="dm_header_logo">
+				<img src="{% static 'images/media/tentrailslogo1-1.png' %}" />
+			</div>
+			<div class="dm_header_headtxt">
+				<h1>Marketing Analytics Dashboard</h1>
+			</div>
+			<div class="dm_header_icons">
+				<div class="DM_tooltip">
+					<img src="{% static 'images/icons/ico_analytics1.png' %}" id="myBtn" data-val="1"
+						class="topcontrol" />
+					<span class="tooltiptext">Analytics</span>
+				</div>
+				<div class="DM_tooltip">
+					<img src="{% static 'images/icons/ico_calander.png' %}" id="myBtn2" data-val="2"
+						class="topcontrol" />
+					<span class="tooltiptext">Select&nbsp;Period</span>
+				</div>
+				<!-- <div class="DM_tooltip">
+					<img src="{% static 'images/icons/ico_setting1.png' %}" id="myBtn3" data-val="3" class="topcontrol" />
+					<span class="tooltiptext">KPI&nbsp;Settings</span>
+				</div> -->
+				<div class="DM_tooltip DM_tooltiplogout" id="logout_click">
+					<a href="/logout">
+						<img src="{% static 'images/icons/ico_logout1.png' %}" />
+					</a>
+					<span class="tooltiptext">Logout</span>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</header>
+
+
+
+	<!-- drop down sections -->
+	<!-- Analytics drop down -->
+	<div id="myModal1" class="modal">
+		<!-- Modal content -->
+		<div class="modal_content">
+			<span class="close" id="closebox1">&times;</span>
+			<div class="modal-body dm_analytics_drop">
+				<ul>
+					<li><a href="#" onclick="home()">Web</a></li>
+					<li><a href="#" onclick="redir_sm()">Social</a></li>
+					<li><a href="#" onclick="redir_mc()">Email</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Calendar  -->
+	<div id="myModal2" class="modal">
+		<!-- Modal content -->
+		<div class="modal_content_cal_drop">
+			<span class="close" id="closebox2">&times;</span>
+			<div class="modal-body">
+				<div id="period_picker"></div>
+				<input type="hidden" name="period_type" id="period_type" value="Monthly" />
+				<input type="hidden" name="month_value" id="month_value" value="01" />
+				<input type="hidden" name="year_value" id="year_value" value="2020" />
+			</div>
+
+		</div>
+	</div>
+
+	<!-- The Modal 3 -->
+	<div id="myModal3" class="modal">
+		<!-- Modal content -->
+		<div class="modal_content">
+			<span class="close" id="closebox3">&times;</span>
+
+			<div class="modal-body dm_kpi_drop">
+				<h3>KPI Details</h3>
+				<div class="DM_form-group_all">
+					<input type="checkbox" id="selectAll">
+					<label for="selectAll">All</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="summary">
+					<label for="summary">Summary</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="engagement">
+					<label for="engagement">Engagement</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="impressions">
+					<label for="impressions">Impressions</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="likes">
+					<label for="likes">Likes</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="followers">
+					<label for="followers">Fans & Followers</label>
+				</div>
+
+				<h4 class="fbsec"><img src="{% static 'images/icons/ico_fb.png' %}" />Facebook</h4>
+				<div class="DM_form-group">
+					<input type="checkbox" id="postviews">
+					<label for="postviews">Post Views</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="gendervsage">
+					<label for="gendervsage">Gender vs Age Group</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="videoviews">
+					<label for="videoviews">Video Views</label>
+				</div>
+				<div class="DM_form-group">
+					<input type="checkbox" id="clicks">
+					<label for="clicks">Clicks</label>
+				</div>
+
+				<h4 class="twitsec"><img src="{% static 'images/icons/ico_twit.png' %}" />Twitter</h4>
+				<div class="DM_form-group">
+					<input type="checkbox" id="twitvideoviews">
+					<label for="twitvideoviews">Video Views</label>
+				</div>
+
+				<h4 class="instasec"><img src="{% static 'images/icons/ico_insta.png' %}" />Instagram</h4>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- drop down sections -->
+	<section class="container">
+		<!-- Breadcrumb view -->
+		<div class="dm_breadcrumb">
+			<h3>Social Analytics Overview - <span id="breadcrumb_values"></span></h3>
+		</div>
+		<!-- Breadcrumb view -->
+	</section>
+
+
+	<section class="container">
+		<!-- Summary view -->
+		<div class="dm_summary">
+			<div class="dm_summary_box">
+				<p>Likes</p>
+				<h2 id="sum_likes">-</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>Fans</p>
+				<h2 id="sum_fans">-</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>Clicks</p>
+				<h2 id="sum_clicks">-</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>Impression</p>
+				<h2 id="sum_impressions">-</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>Video Views</p>
+				<h2 id="sum_videos">-</h2>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+		<!-- Summary view -->
+	</section>
+
+
+	<section class="dm_chart_contain">
+		<!-- Charts view -->
+		<div class="container">
+			<div class="dm_chartbox dm_threeclmn">
+				<h4>Engagement</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="engagement_chart_container" style="width: 100%; height: 100%;"></div>
+					<div id="engagement_chart_nodata" class="dm_nodata" style="display: none;">
+						<h4>No Data</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm_threeclmn">
+				<h4>Impressions</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="impression_chart_container" style="width: 100%; height: 100%;"></div>
+					<div id="impression_chart_nodata" class="dm_nodata" style="display: none;">
+						<h4>No Data</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm_threeclmn">
+				<h4>Fans & Followers</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="fans_chart_container" style="width: 100%; height: 100%;"></div>
+					<div id="fans_chart_nodata" class="dm_nodata" style="display: none;">
+						<h4>No Data</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm_threeclmn">
+				<h4>Demographics(Facebook)</h4>
+				<div class="dm_chart_area">
+					<!-- gender section -->
+					<div class="dm_gender_sec">
+						<div class="dm_gender_contain">
+							<div>
+								<h1 id="fb_gender_male"><span>%</span></h1>
+								<p>Male</p>
+							</div>
+							<div class="dm_gender_chart">
+								<div id="social_gender_chart_container" style="width:100%;height:100%;"></div>
+								<div id="social_gender_chart_nodata" class="dm_nodata" style="display: none;">
+									<h4>No Data</h4>
+								</div>
+							</div>
+							<div>
+								<h1 id="fb_gender_female"><span>%</span></h1>
+								<p>Female</p>
+							</div>
+							<p class="clear"></p>
+						</div>
+					</div>
+
+					<div style="width: 100%; height: 70%;">
+						<div id="social_age_group_chart_container" style="width: 100%; height: 100%;"></div>
+						<div id="social_age_group_chart_nodata" class="dm_nodata" style="display: none;">
+							<h4>No Data</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm_threeclmn">
+				<h4>Likes</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="like_chart_container" style="width: 100%; height: 100%;"></div>
+					<div id="like_chart_nodata" class="dm_nodata" style="display: none;">
+						<h4>No Data</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm_threeclmn">
+				<h4>Facebook Post Views</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="fb_most_views_post_chart_container" style="width: 100%; height: 100%;"></div>
+					<div id="fb_most_views_post_chart_nodata" class="dm_nodata" style="display: none;">
+						<h4>No Data</h4>
+					</div>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+		<!-- Charts view -->
+	</section>
+
+	<script>
+		var axis_color = "#757575"
+		var axis_opacity = 0.5
+
+		var zoombar_color = ['#e4e4e4', '#666666', '#666666']
+		var video_view_color = ['#38c3a4', '#FF595B', '#6D65B2']
+		var social_color = ['#f4e2ad', '#ddc26e', '#96a9c7']
+		var social_eng_color = ['#96a9c7', '#ddc26e', '#56aea2']
+		var post_period = '{{period_value | default:"Monthly"}}'
+		var post_year = '{{year_value | default:"2020"}}'
+		var post_month = '{{month_value | default:"1"}}'
+		per_initial()
+		// var selected_ids = ['engagements_chart', 'video_chart', 'fb_clicks_chart', 'fb_post_view_chart', 'impressions_chart', 'likes_chart', 'fans_followers_chart', 'age_group_chart', 'tw_video_chart']
+		//var selected_ids = {{selected_ids.sm | safe}}
+
+		//$(document).ready(function () {
+		//per_initial() // initial stage
+		//kpi_settings({{selected_ids | safe}})
+		//chart_builder(selected_ids)  // build chart containers
+
+		//	var calculatedHeight = Math.round((window.innerHeight - 110) / 3);
+		//$('.DM_chart_box').css('height', calculatedHeight);
+		//	$('.DM_chart_img').height(calculatedHeight - 44);
+		//	$('.zoomIcn').attr("src", "{% static 'images/icons/expand_ico1.svg' %}")
+
+		//});
+
+		function prepare_chart(period) {
+
+			ajax_sum_fb_insta_tw_summary(period)
+
+			ajax_engagement_chart(period)
+			ajax_impressions_chart(period)
+			ajax_fans_chart(period)
+			ajax_fb_agegroup(period)
+			ajax_fb_gender_chart(period)
+			ajax_likes_chart(period)
+			ajax_fb_post_views_chart(period)
+		}
+		function per_initial() {
+			$("#month_value").val(post_month);
+			$("#year_value").val(post_year);
+			$("#period_type").val(post_period)
+
+			if (post_period == "Daily"
+				|| post_period == "Weekly") {
+				var selectedDate = moment(post_year + "/" + post_month + "/01", 'YYYY/MM/DD');
+
+				$('#breadcrumb_values').text(selectedDate.format('MMM') + " " + post_year)
+			} else {
+				$('#breadcrumb_values').text(post_year)
+			}
+			prepare_chart($("#period_type").val())
+		}
+
+		$(".topcontrol").click(function (e) {
+			$(".modal").css("display", "none");
+			$("#myModal" + $(this).attr("data-val")).css("display", "block");
+
+			updateCalendarValues();
+			e.stopPropagation();
+		});
+
+		$(".close").click(function (e) {
+			$(".modal").css("display", "none");
+		});
+
+		$('#selectAll').click(function () {
+			if (this.checked) {
+				$(':checkbox').each(function () {
+					this.checked = true;
+				});
+			} else {
+				$(':checkbox').each(function () {
+					this.checked = false;
+				});
+			}
+		});
+
+
+
+		$(function () {
+			$("#period_picker").daterangepicker({
+				minDate: '2018-01-01',
+				single: true,
+				standalone: true,
+				period: "month",
+				forceUpdate: false,
+			}, function (startDate, endDate, period) {
+				$("#month_value").val(startDate.format('MM'));
+				$("#year_value").val(startDate.format('YYYY'));
+				$(this).val(startDate.format('L') + ' – ' + endDate.format('L'))
+
+				if ($("#period_type").val() == "Daily"
+					|| $("#period_type").val() == "Weekly") {
+					$('#breadcrumb_values').text(startDate.format('MMM') + " " + $("#year_value").val())
+				} else {
+					$('#breadcrumb_values').text($("#year_value").val())
+				}
+
+				prepare_chart($("#period_type").val());
+			});
+
+			//set period
+			var period = ["Daily", "Weekly", "Monthly", "Quarterly"];
+			var period_index = period.indexOf($("#period_type").val());
+			$(".period").removeClass("active");
+			$(".period:eq(" + period_index + ")").addClass("active");
+			$(".period.active").click();
+
+
+			$(".period").click(function (e) {
+				$(".period").removeClass("active");
+				$(this).addClass("active");
+
+				$("#period_type").val($(this).text());
+
+				if ($("#period_type").val() == "Daily"
+					|| $("#period_type").val() == "Weekly") {
+					var selectedDate = moment($("#year_value").val() + "/" + $("#month_value").val() + "/01", 'YYYY/MM/DD');
+
+					$('#breadcrumb_values').text(selectedDate.format('MMM') + " " + $("#year_value").val())
+				} else {
+					$('#breadcrumb_values').text($("#year_value").val())
+				}
+
+				prepare_chart($("#period_type").val());
+				updateCalendarValues();
+			});
+
+		});
+
+		function updateCalendarValues() {
+			var selectedMonth = $("#month_value").val();
+			var selectedYear = $("#year_value").val();
+			if (selectedMonth != "" && selectedYear != "") {
+
+				selectedMonth = parseInt(selectedMonth) - 1;
+				if (!$("select").hasClass("year-select hidden")) {
+					$(".year-select").val(selectedYear);
+					$('.table-col').removeClass("start-date");
+					$('.table-col:eq(' + selectedMonth + ')').addClass("start-date");
+				}
+				else {
+					decade = Math.floor(selectedYear / 9) * 9;
+					orgval = $(".decade-select").val();
+					if (decade < orgval) {
+						while (decade < orgval) {
+							$("div.arrow:eq(0)").find("button").click();
+							orgval = $(".decade-select").val();
+						}
+					}
+					else if (decade > orgval) {
+						while (decade > orgval) {
+							$("div.arrow:eq(1)").find("button").click();
+							orgval = $(".decade-select").val();
+						}
+					}
+					decadeSelectedYear = selectedYear - decade;
+					$('.table-col').removeClass("start-date");
+					$('.table-col:eq(' + decadeSelectedYear + ')').addClass("start-date");
+				}
+			}
+		}
+
+		function redir_sm() {
+			$('input[name="period_value"]').val($("#period_type").val());
+			$('input[name="period_year"]').val($("#year_value").val());
+			$('input[name="period_month"]').val($("#month_value").val());
+			$("#redir_form").attr('action', '/social_dashboard')
+			$("#redir_form").submit()
+		}
+
+		function redir_mc() {
+			$('input[name="period_value"]').val($("#period_type").val());
+			$('input[name="period_year"]').val($("#year_value").val());
+			$('input[name="period_month"]').val($("#month_value").val());
+			$("#redir_form").attr('action', '/mailchimp_dashboard')
+			$("#redir_form").submit()
+		}
+
+		function home() {
+			$('input[name="period_value"]').val($("#period_type").val());
+			$('input[name="period_year"]').val($("#year_value").val());
+			$('input[name="period_month"]').val($("#month_value").val());
+			$("#redir_form").attr('action', '/ga_dashboard')
+			$("#redir_form").submit()
+		}
+	</script>
+
+	<form action="" method="POST" id="redir_form">
+		{% csrf_token %}
+		<input type="hidden" name="period_value" value="">
+		<input type="hidden" name="period_month" value="">
+		<input type="hidden" name="period_year" value="">
+		<input type="hidden" name="ga_kpi_selected" value="">
+		<input type="hidden" name="sm_kpi_selected" value="">
+		<input type="hidden" name="mc_kpi_selected" value="">
+		<input type="hidden" name="redir_page" value="">
+	</form>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <form action="create" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Create"/>
+        </form>
+        <h1 style="color: red;">{{msg}}</h1>
+    </body>
+</html>

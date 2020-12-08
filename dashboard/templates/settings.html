@@ -1,0 +1,486 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block settings %}
+
+<head>
+    <title>Marketing Analytics</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_social.css' %}?version=0.0.10" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dual_select.css' %}?version=0.0.4">
+    <style>
+        .custom-file-input {
+            width: 0px !important;
+        }
+
+        .custom-file-label:hover {
+            cursor: pointer !important;
+        }
+        .errorlist {
+            display: none;
+        }
+        /*option:checked {
+            background: red linear-gradient(0deg, red 0%, red 100%);
+          }*/
+    </style>
+    <script src="{% static 'js/dual_select.js' %}?version=0.0.3"></script>
+</head>
+
+<div class="dm_header">
+
+	<!-- update the below code -->
+	<div class="container">
+		<div class="left logo">
+            {% if profile_path %}
+				<img src="{{profile_path}}" style="height: 65px; cursor: pointer; padding-right: 5px;" onclick="home()" alt="logo"/><h1>Marketing Analytics</h1>
+			{% else %}
+				<h1>Marketing Analytics</h1>
+			{% endif %}
+        </div>
+		<div class="right">
+    		<div class="dm_toggle_back"><a href="#" onclick="home()" data-toggle="tooltip" data-placement="left" title="Back"> <img src="{% static 'images/icons/back.png' %}" /> </a></div>
+			<div class="dm_toggle_logout"><a href="/logout" data-toggle="tooltip" data-placement="left" title="Logout"><img src="{% static 'images/icons/logout2.png' %}" /></a></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- update the below code -->
+	
+</div>
+
+<div class="dm_chartarea">
+	<div class="container">
+		<div class="dm_chart fullwidth">
+			<div class="dm_charthead">
+				<div class="innercontain dm_settings_head"><span><img src="{% static 'images/icons/settings.png' %}" width="24" /></span>Settings</div>
+            </div>
+			<div class="dm_chart_dis" >
+				<div class="dm_settings">
+					<!-- upload logo -->
+					<div class="dm_upload_section">
+						<h3>Upload logo</h3>
+						<div>
+							<p>Select Logo</p>
+                            <div class="dm_select_input">
+								<div class="custom-file">
+                                    <form action="settings" method="POST" enctype="multipart/form-data" id="settings_form">
+                                        {% csrf_token %}
+                                        {{form}}
+                                        <label class="custom-file-label" style='width: 300px !important;' for="profile_pic_uploader">Choose file</label>
+                                        <h6>Supported formats .jpg, .png, .gif</h6>
+                                        <input type="hidden" name="selected_ga_set" value="">
+                                        <input type="hidden" name="selected_social_set" value="">
+                                        <input type="hidden" name="selected_campaigns_set" value="">
+                                        <input type="hidden" name="period_value2" value="">
+                                        <input type="hidden" name="period_year2" value="">
+                                        <input type="hidden" name="period_month2" value="">
+                                        <input type="hidden" name="backward_url" value="">
+                                    </form>
+								</div>
+							</div>
+							<div class="dm_selected_logo">
+                                {% if profile_path %}
+                                    <img src="{{profile_path}}" alt="logo" style="height: 65px; border: 1px solid gray;" id="pic_container"
+                                        data-toggle="tooltip" data-placement="bottom" title="Existing Logo">
+                                {% endif %}
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					
+					
+					<div>
+						<!-- Google analytics -->
+						<div class="dm_google_section">
+							<h3>Google Analytics</h3>
+							<div>
+								<div class="subject-info-box-1">
+									<p>Available Widgets</p>
+									<select multiple class="form-control dm_infobox" id="lstBox1">
+									</select>
+								</div>
+								<div class="subject-info-arrows text-center">
+                                    <div  id='btnRight'><img src="{% static 'images/icons/right.png'%}"  value='>'
+                                    data-toggle="tooltip" data-placement="bottom" title="Move Right"> </div>
+                                   
+                                    <div id='btnLeft' ><img src="{% static 'images/icons/left.png'%}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Move Left"/></div>
+
+
+                                    <div  id='btnAllRight'><img src="{% static 'images/icons/rightall.png'%}"
+                                        data-toggle="tooltip" data-placement="bottom" title="Move All Right" /></div>
+
+                                    <div id='btnAllLeft'><img src="{% static 'images/icons/leftall.png'%}"  
+                                        data-toggle="tooltip" data-placement="bottom" title="Move All Left" /></div>
+
+                                    <div id='btnUp' ><img src="{% static 'images/icons/up.png'%}"  
+                                        data-toggle="tooltip" data-placement="bottom" title="Move Up"/> </div>
+                                    <div id='btnDown' ><img src="{% static 'images/icons/down.png'%}" 
+                                        data-toggle="tooltip" data-placement="top" title="Move Down"/></div>
+									
+								</div>
+								<div class="subject-info-box-2">
+									<p>Selected Widgets</p>
+									<select multiple class="form-control dm_infobox" id="lstBox2">
+									</select>
+								</div>
+								<div class="clear">&nbsp;</div>
+							</div>	
+						</div>
+							
+						<!-- Google analytics -->
+						
+						<!-- Social media -->
+						<div class="dm_google_section">
+							<h3>Social Media</h3>
+							
+							<div>
+								<div class="subject-info-box-1">
+									<p>Available Widgets</p>
+									<select multiple class="form-control dm_infobox"  id="lstBox1-2">
+									</select>
+								</div>
+								<div class="subject-info-arrows text-center">
+                                    <div id='btnRight2'><img src="{% static 'images/icons/right.png'%}"  value='>'
+                                    data-toggle="tooltip" data-placement="bottom" title="Move Right"> </div>
+                                   
+                                    <div id='btnLeft2'><img src="{% static 'images/icons/left.png'%}"  
+                                        data-toggle="tooltip" data-placement="bottom" title="Move Left"/></div>
+
+                                        <div id='btnAllRight2'><img src="{% static 'images/icons/rightall.png'%}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Move All Right" /></div>
+
+                                        <div id='btnAllLeft2'><img src="{% static 'images/icons/leftall.png'%}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Move All Left" /></div>
+
+                                        <div  id='btnUp2' ><img src="{% static 'images/icons/up.png'%}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Move Up"/> </div>
+                                        <div id='btnDown2' ><img src="{% static 'images/icons/down.png'%}" 
+                                        data-toggle="tooltip" data-placement="top" title="Move Down"/></div>
+								</div>
+								<div class="subject-info-box-2">
+									<p>Selected Widgets</p>
+									<select multiple class="form-control dm_infobox" id="lstBox2-2">
+									</select>
+                                </div>
+                                <div class="clear">&nbsp;</div>
+							</div>
+                        </div>
+                        
+                        <!-- Mail Campaigns -->
+						<div class="dm_google_section">
+							<h3>Mail Campaigns</h3>
+							
+							<div>
+								<div class="subject-info-box-1">
+									<p>Available Widgets</p>
+									<select multiple class="form-control dm_infobox"  id="campaign_lst1">
+									</select>
+								</div>
+								<div class="subject-info-arrows text-center">
+                                    <div id='btnRight3'><img src="{% static 'images/icons/right.png'%}"  value='>'
+                                    data-toggle="tooltip" data-placement="bottom" title="Move Right"> </div>
+                                   
+                                    <div id='btnLeft3'><img src="{% static 'images/icons/left.png'%}"  
+                                        data-toggle="tooltip" data-placement="bottom" title="Move Left"/></div>
+
+                                        <div id='btnAllRight3'><img src="{% static 'images/icons/rightall.png'%}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Move All Right" /></div>
+
+                                        <div id='btnAllLeft3'><img src="{% static 'images/icons/leftall.png'%}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Move All Left" /></div>
+
+                                        <div  id='btnUp3' ><img src="{% static 'images/icons/up.png'%}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Move Up"/> </div>
+                                        
+                                        <div id='btnDown3' ><img src="{% static 'images/icons/down.png'%}" 
+                                        data-toggle="tooltip" data-placement="top" title="Move Down"/></div>
+								    </div>
+								<div class="subject-info-box-2">
+									<p>Selected Widgets</p>
+									<select multiple class="form-control dm_infobox" id="campaign_lst2">
+									</select>
+                                </div>
+                                
+							</div>
+						</div>
+
+                        <!-- Social media -->
+						<div class="clear"></div>
+						<div class="dm_setting_button" align='right'>
+                            <span id='msg' style="color: red; font-size: 13px;">{{msg}}</span>
+                            <span id="dualbox_err" style="color: red; font-size: 13px;"></span>
+                            <input type="button" id="close" value="Cancel" onclick="home()" class="dm_close">
+                            <input type="button" id="save" value="Save" class="dm_save">    
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear">&nbsp;</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="HomePageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Settings</h5>
+            </div>
+            <div class="modal-body">Settings updated successfully. Do you want to goto home page?.</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="home()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height:20px;clear:both;">&nbsp;</div>
+<div class="dm_footer clear">
+	<div class="container clear">
+		Copyright @ MarketingAnalytics 2020
+	</div>
+</div>
+
+<script>
+    var ga_obj = {
+        'user_count_chart_container': 'Total Visits - New Visit & Returning',
+        'interaction_chart_container': 'Interaction Per Visit', 'conversion_rate_chart_container': 'Conversion Rate By Source',
+        'gender_charts': 'Gender vs Age Group', 'top_pages_chart_container': 'Top 10 Pages',
+        'city_chart_container': 'By City', 'device_chart_container': 'By Device', 'pageviews_chart_container':'Page Views'
+    }
+
+    var social_obj = {
+        'engagement_chart_container': 'Engagement', 'impression_chart_container': 'Impressions',
+        'fans_chart_container': 'Fans & Followers', 'gender_charts': 'Gender vs Age Group (Facebook)', 'like_chart_container': 'Likes',
+        'clicks_chart_container': 'Facebook Clicks', 'video_views_chart_container': 'Facebook Video Views','fb_most_views_post_chart_container':'Facebook Post Views'
+    }
+
+    var mail_campaigns = {
+        'opens_chart_container':'Total Opens & Unique Opens', 'campaigns_chart_container':'Top Campaigns' 
+        ,'clickThrough_chart_container':'Click Through & Click Through Rate', 'emailSend_chart_container':'Email Send - Day Of Week'
+    }
+
+    function prepare_dualSelect1(obj, data) {
+        keys_arr = Object.keys(obj)
+        selected = data ? data.split(' ') : []
+        for (i = 0; i < keys_arr.length; i++) {
+            if (selected.includes(keys_arr[i]) == false) {
+                $('#lstBox1').append(new Option(obj[keys_arr[i]], keys_arr[i]))
+            }
+        }
+        for (i = 0; i < selected.length; i++) {
+            $('#lstBox2').append(new Option(obj[selected[i]], selected[i]))
+        }
+    }
+
+    function prepare_dualSelect2(obj, data) {
+        keys_arr = Object.keys(obj)
+        selected = data ? data.split(' ') : []
+        for (i = 0; i < keys_arr.length; i++) {
+            if (selected.includes(keys_arr[i]) == false) {
+                $('#lstBox1-2').append(new Option(obj[keys_arr[i]], keys_arr[i]))
+            }
+        }
+        for (i = 0; i < selected.length; i++) {
+            $('#lstBox2-2').append(new Option(obj[selected[i]], selected[i]))
+        }
+    }
+
+    function prepare_dualSelect3(obj, data) {
+        keys_arr = Object.keys(obj)
+        selected = data ? data.split(' ') : []
+        for (i = 0; i < keys_arr.length; i++) {
+            if (selected.includes(keys_arr[i]) == false) {
+                $('#campaign_lst1').append(new Option(obj[keys_arr[i]], keys_arr[i]))
+            }
+        }
+        for (i = 0; i < selected.length; i++) {
+            $('#campaign_lst2').append(new Option(obj[selected[i]], selected[i]))
+        }
+    }
+
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Modal show
+        if ("{{msg}}" == "Settings updated successfully.") {
+            $('#HomePageModal').modal('show');
+        }
+
+        prepare_dualSelect1(ga_obj, "{{ga_ids}}")
+        prepare_dualSelect2(social_obj, "{{social_ids}}")
+        prepare_dualSelect3(mail_campaigns, "{{mail_campaigns_ids}}")
+
+        $('#save').click(function () {
+            var ga_key_set = [];
+            var social_key_set = [];
+            var campaign_key_set = [];
+            $('#lstBox2 option').each(function () {
+                ga_key_set.push($(this).val());
+            });
+            $('#lstBox2-2 option').each(function () {
+                social_key_set.push($(this).val());
+            });
+            $('#campaign_lst2 option').each(function () {
+                campaign_key_set.push($(this).val());
+            });
+
+            if(jQuery.isEmptyObject(ga_key_set) || jQuery.isEmptyObject(social_key_set) || jQuery.isEmptyObject(campaign_key_set)){
+                $('#msg').text('')
+                $("#dualbox_err").text("Selected Widgets Field Should Not Be Empty.")
+            }else{
+                $('input[name="selected_ga_set"]').val(ga_key_set);
+                $('input[name="selected_social_set"]').val(social_key_set);
+                $('input[name="selected_campaigns_set"]').val(campaign_key_set);
+                $('input[name="period_value2"]').val("{{period_value}}");
+                $('input[name="period_year2"]').val("{{period_year}}");
+                $('input[name="period_month2"]').val("{{period_month}}");
+                $('input[name="backward_url"]').val("{{backward_url}}");
+                $("#settings_form").submit()
+            }
+        });
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            if(fileName.length > 20){
+                fileFromat = fileName.split(".").pop()
+                fileName = fileName.slice(0,18)+"...."+fileFromat
+            }
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+    });
+</script>
+
+<script>
+    $('#btnRight').click(function (e) {
+        $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
+        e.preventDefault();
+    });
+
+    $('#btnAllRight').click(function (e) {
+        $('#lstBox1 option').prop('selected', true);
+        setTimeout(function(){
+            $('select').moveAllToListAndDelete('#lstBox1', '#lstBox2');
+            e.preventDefault();
+        },200)
+    });
+
+    $('#btnLeft').click(function (e) {
+        $('select').moveToListAndDelete('#lstBox2', '#lstBox1');
+        e.preventDefault();
+    });
+
+    $('#btnAllLeft').click(function (e) {
+        $('#lstBox2 option').prop('selected', true);
+        setTimeout(function(){
+            $('select').moveAllToListAndDelete('#lstBox2', '#lstBox1');
+            e.preventDefault();
+        },200)
+    });
+    $('#btnUp').click(function (e) {
+        $('select').moveUpDown('#lstBox2', true, false);
+        e.preventDefault();
+    });
+    $('#btnDown').click(function (e) {
+        $('select').moveUpDown('#lstBox2', false, true);
+        e.preventDefault();
+    });
+
+    /////////////////////////////////////
+
+    $('#btnRight2').click(function (e) {
+        $('select').moveToListAndDelete('#lstBox1-2', '#lstBox2-2');
+        e.preventDefault();
+    });
+
+    $('#btnAllRight2').click(function (e) {
+        $('#lstBox1-2 option').prop('selected', true);
+        setTimeout(function(){
+            $('select').moveAllToListAndDelete('#lstBox1-2', '#lstBox2-2');
+            e.preventDefault();
+        },200)
+    });
+
+    $('#btnLeft2').click(function (e) {
+        $('select').moveToListAndDelete('#lstBox2-2', '#lstBox1-2');
+        e.preventDefault();
+    });
+
+    $('#btnAllLeft2').click(function (e) {
+        $('#lstBox2-2 option').prop('selected', true);
+        setTimeout(function(){
+            $('select').moveAllToListAndDelete('#lstBox2-2', '#lstBox1-2');
+            e.preventDefault();
+        },200)
+    });
+    $('#btnUp2').click(function (e) {
+        $('select').moveUpDown('#lstBox2-2', true, false);
+        e.preventDefault();
+    });
+    $('#btnDown2').click(function (e) {
+        $('select').moveUpDown('#lstBox2-2', false, true);
+        e.preventDefault();
+    });
+
+        /////////////////////////////////////
+
+    $('#btnRight3').click(function (e) {
+        $('select').moveToListAndDelete('#campaign_lst1', '#campaign_lst2');
+        e.preventDefault();
+    });
+
+    $('#btnAllRight3').click(function (e) {
+        $('#campaign_lst1 option').prop('selected', true);
+        setTimeout(function(){
+            $('select').moveAllToListAndDelete('#campaign_lst1', '#campaign_lst2');
+            e.preventDefault();
+        },200)
+    });
+
+    $('#btnLeft3').click(function (e) {
+        $('select').moveToListAndDelete('#campaign_lst2', '#campaign_lst1');
+        e.preventDefault();
+    });
+
+    $('#btnAllLeft3').click(function (e) {
+        $('#campaign_lst2 option').prop('selected', true);
+        setTimeout(function(){
+            $('select').moveAllToListAndDelete('#campaign_lst2', '#campaign_lst1');
+            e.preventDefault();
+        },200)
+    });
+    $('#btnUp3').click(function (e) {
+        $('select').moveUpDown('#campaign_lst2', true, false);
+        e.preventDefault();
+    });
+    $('#btnDown3').click(function (e) {
+        $('select').moveUpDown('#campaign_lst2', false, true);
+        e.preventDefault();
+    });
+
+    function home() {
+		$('input[name="period_value2"]').val("{{period_value}}");
+		$('input[name="period_year2"]').val("{{period_year}}");
+        $('input[name="period_month2"]').val("{{period_month}}");
+        
+        $('input[name="period_value"]').val("{{period_value}}");
+		$('input[name="period_year"]').val("{{period_year}}");
+		$('input[name="period_month"]').val("{{period_month}}");
+		$("#home_form").submit()
+	}
+</script>
+
+<form action="{{backward_url}}" method="POST" id="home_form">
+	{% csrf_token %}
+	<input type="hidden" name="period_value" value="">
+	<input type="hidden" name="period_month" value="">
+    <input type="hidden" name="period_year" value="">
+</form>
+
+
+{% endblock %}

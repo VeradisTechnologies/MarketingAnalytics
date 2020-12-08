@@ -1,0 +1,428 @@
+
+{% load static %}
+<html>
+
+<head>
+	<title>Marketing Analytics</title>
+	<meta name="description" content="" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+	<!-- css -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+	<!-- Jquery  -->
+	<script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+	<!-- Bootstrap  -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- Echart -->
+	<script src="{% static 'js/echarts.min.js' %}"></script>
+	<script src="{% static 'js/echarts-gl.min.js' %}"></script>
+ 	<!-- ga charts -->
+	<script src="{% static 'js/charts_js/js_visitor_chart.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_pageView_chart.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_conversion_chart.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_city_chart.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_top_5_pages.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_age_group_chart.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_gender_chart.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_ajax_call.js' %}"></script>
+	<script src="{% static 'js/charts_js/js_loader.js' %}"></script>
+	<!-- <img src="{% static 'images/loader.gif'%}" style="display:none" id="loader_gif"> -->
+
+
+</head>
+
+<body>
+
+	<header>
+		<div class="container">
+			<div class="dm_header_logo">
+				<img src="{% static 'images/media/tentrailslogo1-1.png' %}" />
+			</div>
+			<div class="dm_header_headtxt">
+				<h1>Marketing Analytics Dashboard</h1>
+			
+			</div>
+			<div class="dm_header_icons">
+				<div class="DM_tooltip">
+					<img src="{% static 'images/icons/ico_analytics1.png' %}" id="myBtn" data-val="1" class="btnmmgg" />
+					<span class="tooltiptext">Analytics</span>
+				</div>
+				<div class="DM_tooltip">
+					<img src="{% static 'images/icons/ico_calander.png' %}" id="myBtn2" data-val="2" class="btnmmgg" />
+					<span class="tooltiptext">Select&nbsp;Period</span>
+				</div>
+				<div class="DM_tooltip">
+					<img src="{% static 'images/icons/ico_setting1.png' %}" id="myBtn3" data-val="3" class="btnmmgg" />
+					<span class="tooltiptext">KPI&nbsp;Settings</span>
+				</div>
+				<div class="DM_tooltip DM_tooltiplogout">
+					<img src="{% static 'images/icons/ico_logout1.png' %}" />
+					<span class="tooltiptext">Logout</span>
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+	</header>
+
+
+
+	<!-- drop down sections -->'
+	<!-- Analytics drop down -->
+	<div id="myModal1" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal_content">    
+		<span class="close" id="closebox1">&times;</span>      
+		<div class="modal-body dm_analytics_drop">
+		  <ul>	
+			<li><a href="#"><img src="{% static 'images/icons/ico-googleanalytics.png' %}" /> Google Analytics</a></li>
+			<li><a href="#"><img src="{% static 'images/icons/ico-social1.png' %}" /> Social Media</a></li>
+			<li><a href="#"><img src="{% static 'images/icons/ico-mailchamp.png' %}" /> Mailchimp</a></li>
+		  </ul>
+		</div>   
+	  </div>
+	</div>
+
+
+	<!-- Calendar  -->
+	<div id="myModal2" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal_content">    
+		  <span class="close" id="closebox2">&times;</span>      
+		<div class="modal-body dm_calendar_drop">
+			<p>Select Period</p>
+			<select id='year_dropdown'>
+				<option>Select</option>
+				<option>2020</option>
+				<option>2019</option>
+				<option>2018</option>
+			</select>
+			<select id='month_dropdown'>
+				<option>Select</option>
+				<option>January</option>
+				<option>February</option>
+				<option>March</option>
+				<option>April</option>
+				<option>May</option>
+				<option>June</option>
+				<option>July</option>
+				<option>August</option>
+			</select>
+			<select id='period_dropdown' >
+				<option>Quarterly</option>
+				<option>Monthly</option>
+				<option>Weekly</option>
+				<option>Daily</option>
+			</select>
+			<div align="right"><a href="#">Apply</a></div>
+		</div>
+	   
+	  </div>
+	</div>
+
+	<!-- The Modal 3 -->
+	<div id="myModal3" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal_content">    
+		  <span class="close" id="closebox3">&times;</span>
+		  
+		<div class="modal-body dm_kpi_drop">
+			<h3>KPI Details</h3>
+			<div class="DM_form-group_all">
+			  <input type="checkbox" id="selectAll">
+			  <label for="selectAll">All</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="summary">
+			  <label for="summary">Summary</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="engagement">
+			  <label for="engagement">Engagement</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="impressions">
+			  <label for="impressions">Impressions</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="likes">
+			  <label for="likes">Likes</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="followers">
+			  <label for="followers">Fans & Followers</label>
+			</div>
+			
+			<h4 class="fbsec"><img src="{% static 'images/icons/ico_fb.png' %}" />Facebook</h4>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="postviews">
+			  <label for="postviews">Post Views</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="gendervsage">
+			  <label for="gendervsage">Gender vs Age Group</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="videoviews">
+			  <label for="videoviews">Video Views</label>
+			</div>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="clicks">
+			  <label for="clicks">Clicks</label>
+			</div>
+			
+			
+			
+			
+			<h4 class="twitsec"><img src="{% static 'images/icons/ico_twit.png' %}" />Twitter</h4>
+			<div class="DM_form-group">
+			  <input type="checkbox" id="twitvideoviews">
+			  <label for="twitvideoviews">Video Views</label>
+			</div>
+			
+			
+			
+			<h4 class="instasec"><img src="{% static 'images/icons/ico_insta.png' %}" />Instagram</h4>
+			<!--<div class="DM_form-group">
+			  <input type="checkbox" id="fbhhhh">
+			  <label for="fbhhhh">&nbsp;</label>
+			</div>-->
+		</div>
+	   
+	  </div>
+	</div>
+
+	<!-- drop down sections -->
+
+
+
+
+
+
+	<section class="container">
+		<!-- Breadcrumb view -->
+		<div class="dm_breadcrumb">
+			<h3>Web Analytics Overview - <span>Q1 2020</span></h3>
+		</div>
+		<!-- Breadcrumb view -->
+	</section>
+	
+
+
+	<section class="container">
+		<!-- Summary view -->
+		<div class="dm_summary">
+			<div class="dm_summary_box">
+				<p>Visits</p>
+				<h2>12.38K</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>Bounce Rate</p>
+				<h2>10.2M</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>Avg Page Views</p>
+				<h2>38.90M</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>Avg Duration</p>
+				<h2>15.12K</h2>
+			</div>
+
+			<div class="dm_summary_box">
+				<p>New Users</p>
+				<h2>20.28K</h2>
+			</div>
+
+
+			<div class="clear"></div>
+		</div>
+		<!-- Summary view -->
+	</section>
+
+
+
+	<section class="dm_chart_contain">
+		<!-- Charts view -->
+		<div class="container">
+			<div class="dm_chartbox dm39prcnt_box">
+				<h4>Total Visits</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="visitor_chart_container" style="width: 100%; height: 100%;"></div>
+					
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm39prcnt_box">
+				<h4>Page Views</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="pageview_chart_container" style="width: 100%; height: 100%;"></div>
+					
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm22prcnt_box">
+				<h4>Top 5 Pages</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="top5_chart_container" style="width: 100%; height: 100%;"></div>
+					
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm40prcnt_box">
+				<h4>Demographics</h4>
+				<div class="dm_chart_area">
+					<div style="width: 100%; height: 30%;">
+						<div class="dm_male">
+							<img src="{% static 'images/icons/male.png' %}" id="men_png" />
+							<div class="right" id="male_percentage_text">
+								<h1 id="male"><span>%</span></h1>
+								<h6>Male</h6>
+							</div>
+						</div>
+						<div id="gender_charts_ga" style="width: 33%; height: 100%; float: left;"></div>
+						<div class="dm_famale">
+						    <img src="{% static 'images/icons/female.png' %}" id="female_png" />
+						    <div class="left" id="female_percentage_text">
+						        <h1 id=female><span>%</span></h1>
+						        <h6>Female</h6>
+						    </div>
+						</div>
+					</div>
+
+					<div style="width: 100%; height: 70%;">
+						<div id="age_gender_charts_ga" style="width: 100%; height: 100%;"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm30prcnt_box">
+				<h4>Conversion Rate By Source</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="conversion_chart_container" style="width: 100%; height: 100%;"></div>
+				</div>
+			</div>
+
+			<div class="dm_chartbox dm30prcnt_box">
+				<h4>By City</h4>
+				<div class="dm_chart_area">
+					<!-- chat -->
+					<div id="city_chart_container" style="width: 100%; height: 100%;"></div>
+					
+				</div>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+		<!-- Charts view -->
+	</section>
+
+
+	<script>
+		var axis_color = "#757575"
+		var axis_opacity = 0.5
+		var state_change_refresh_for_visit_chart = false
+
+        var user_count_chart_obj = null
+        var pageview_chart_obj = null
+        var interaction_per_visit_chart = null
+        var conversion_rate_chart_obj = null
+        var age_group_obj = null
+        var gender_chart_obj = null
+        var city_chart_obj = null
+        var top_page_chart_obj = null
+        var device_chart_obj = null
+
+        var global_trillDown = null
+        var pervious_state = null
+        var first_load = true
+
+        var control_option_chartname = null
+        var control_option_xValue = null
+        var control_series_xValue = null
+        var post_period = '{{period_value | default:"Monthly"}}'
+        var post_year = '{{year_val | default:"2020"}}'
+		var post_month = '{{month_val | default:"January"}}'
+		per_initial()
+
+		
+
+		function prepare_chart(period, period2) {
+			alert(period)
+			ajax_user_count_chart(period)
+			ajax_pageview_chart(period)
+			ajax_top_pages_chart(period)
+			ajax_gender_chart(period)
+			ajax_agegroup_chart(period)
+			ajax_conversion_rate_chart(period)
+			ajax_city_chart(period)
+			
+		}
+		function per_initial() {
+			$("#period_dropdown").val(post_period)
+			$("#year_dropdown").val(post_year)
+			$("#month_dropdown").val(post_month)
+			
+		}
+		function dropdown_onchange() {
+			prepare_chart(($("#period_dropdown option:selected").text()))
+
+			// minimize_container()
+		}
+		
+	</script>
+<script>
+
+$(".btnmmgg").click(function(e) {
+   
+	$(".modal").css("display","none");
+	
+	 $("#myModal"+$(this).attr("data-val")).css("display","block");
+	 e.stopPropagation();
+	
+});
+
+$(".close").click(function(e) {
+	$(".modal").css("display","none");	
+});
+/*
+$('body').click(function(){
+   //alert( $(this).parents().eq(2).attr('id'));	
+})
+$(document).click(function(e) {
+alert("MMGG");
+    if (!$(e.target).is("#myModal1")) {
+        if ($('#myModal1').is(':visible')) {
+            $(".modal").css("display","none");
+        }
+    }
+});*/
+
+$('#selectAll').click(function() {
+		   if(this.checked) {
+			   $(':checkbox').each(function() {
+				   this.checked = true;                        
+			   });
+		   } else {
+			  $(':checkbox').each(function() {
+				   this.checked = false;                        
+			   });
+		   } 
+		});
+
+</script>
+
+</body>
+
+</html>

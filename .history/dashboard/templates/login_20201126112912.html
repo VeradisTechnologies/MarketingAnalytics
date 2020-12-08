@@ -1,0 +1,104 @@
+<!-- {% extends 'base.html' %} -->
+{% load static %}
+{% block user_login %}
+
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}?version=0.0.5" />
+	<title>Marketing Analytics</title>
+
+</head>
+
+<body>
+	<div class="dm_header">
+		<div class="container">
+			<div class="left logo">
+				<h1>Marketing Analytics</h1>
+			</div>
+			<div class="right">&nbsp;</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<div class="dm_chartarea">
+		<div class="container">
+
+			<div class="dm_chart login_box">
+				<div class="dm_charthead">
+					<div class="innercontain">User Login</div>
+				</div>
+
+				<div class="dm_chart_dis">
+					<form action="/" method="post" id="login_form">
+						{% csrf_token %}
+						<p>User Name</p><span id='error_msg_usr' style="color: red; font-size: 13px;">{{form.username.errors | striptags}}</span>
+						{{form.username}}
+						<p>Password</p><span id='error_msg_pass' style="color: red; font-size: 13px;">{{form.password.errors | striptags}}</span>
+						{{form.password}}
+
+						<div class="button">
+							<input type="submit" value="Submit" id="login_btn"/>
+							<!-- <input type="reset" value="Reset" /> -->
+							<span id="error_msg" style="color: red; font-size: 13px;">{{error}}</span>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="clear">&nbsp;</div>
+		</div>
+	</div>
+
+	<div class="dm_footer clear">
+		<div class="container clear">
+			Copyright @ MarketingAnalytics 2020
+		</div>
+	</div>
+
+
+	<script>
+		$(document).ready(function(){
+			$('#login_btn').click(function(){
+				$('#error_msg').text('')
+			})
+
+			$("#login_form").submit(function(){
+				user_state = true
+				pass_state = true
+				if( $('#UserName').val() == ''){
+					$('#UserName').css({"border":'1px solid red'})
+					$('#error_msg_usr').text('Enter a valid username.')
+					user_state = false
+				} else if( $('#UserName').val().length > 50 ){
+					$('#UserName').css({"border":'1px solid red'})
+					$('#error_msg_usr').text('Username must not exceed 50 characters.')
+					user_state = false
+				}else{
+					$('#UserName').css({"border":''})
+					$('#error_msg_usr').text('')
+					user_state = true
+				}
+
+				if( $('#Password').val() == ''){
+					$('#Password').css({"border":'1px solid red'})
+					$('#error_msg_pass').text('Enter a valid password.')
+					pass_state = false
+				} else if( $('#Password').val().length > 500 ){
+					$('#Password').css({"border":'1px solid red'})
+					$('#error_msg_pass').text('Password must not exceed 500 characters.')
+					pass_state = false
+				}else{
+					$('#Password').css({"border":''})
+					$('#error_msg_pass').text('')
+					pass_state = true
+				}
+
+				if(user_state && pass_state){
+					return true
+				}else{
+					return false
+				}
+			});
+
+		});
+	</script>
+
+	{% endblock %}
